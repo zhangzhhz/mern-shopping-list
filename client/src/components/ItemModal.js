@@ -9,11 +9,10 @@ import {
   Label,
   Input
 } from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import actions from '../actions';
 
 export default function ItemModal() {
-  const items = useSelector(state => state.itemReducer).items;
   const dispatch = useDispatch();
   const [isModal, setIsModal] = useState(false);
   const [name, setName] = useState('');
