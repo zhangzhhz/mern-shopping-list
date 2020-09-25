@@ -1,49 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { v4 as uuid } from 'uuid';
-import { connect } from 'react-redux';
-import { getItems } from '../actions/itemActions';
+import { useSelector, useDispatch } from 'react-redux';
+import actions from '../actions';
 import PropTypes from 'prop-types';
 
 function ShoppingList(props) {
-  // const [items, setItems] = useState(() => [
-  //   {
-  //     id: uuid(),
-  //     name: 'Eggs'
-  //   },
-  //   {
-  //     id: uuid(),
-  //     name: 'Milk'
-  //   },
-  //   {
-  //     id: uuid(),
-  //     name: 'Steak'
-  //   },
-  //   {
-  //     id: uuid(),
-  //     name: 'Water'
-  //   },
-  // ]);
-
   useEffect(() => {
-    props.getItems();
+    dispatch(actions.itemActions.getItems());
   }, []);
 
-  const { items } = props.item;
+  const items = useSelector(state => state.itemReducer).items;
+  const dispatch = useDispatch();
 
   return (
     <Container>
-      <Button
-        color='dark'
-        style={{ marginBottom: '2rem' }}
-        onClick={() => {
-          const name = prompt("Enter Item");
-          if (name) {
-            setItems([...items, { id: uuid(), name }]);
-          }
-        }}
-      >Add Item</Button>
       <ListGroup>
         <TransitionGroup>
           {items.map(({ id, name }) => (
@@ -54,7 +25,7 @@ function ShoppingList(props) {
                   color="danger"
                   size="sm"
                   onClick={() => {
-                    setItems(items.filter(item => item.id !== id))
+                    dispatch(actions.itemActions.deleteItem(id));
                   }}
                 >&times;</Button>
                 {name}
@@ -72,8 +43,4 @@ ShoppingList.propTypes = {
   item: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  item: state.item,
-});
-
-export default connect(mapStateToProps, { getItems })(ShoppingList);
+export default ShoppingList;
