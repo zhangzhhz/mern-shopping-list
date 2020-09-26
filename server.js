@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -20,6 +21,15 @@ mongoose.connect(db, {
 
 // use routes
 app.use('/api/items', items);
+
+// serve static assets if we are in production
+if (process.env.NODE_ENV === 'production') {
+  // set a static folder
+  app.use(express.static('client/build/'));
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+} 
 
 // server
 const port = process.env.PORT || 5000;
