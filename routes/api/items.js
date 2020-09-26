@@ -38,7 +38,7 @@ router.delete('/:id', (req, res) => {
   Item.findById(id)
   .then(item => {
     item.deleteOne()
-    .then(() => res.status(404).json({success: true}));
+    .then(() => res.json({success: true}));
   })
   .catch(err => res.status(404).json({success: false}));
 });

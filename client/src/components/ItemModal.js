@@ -10,6 +10,7 @@ import {
   Input
 } from 'reactstrap';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import actions from '../actions';
 
 export default function ItemModal() {
@@ -25,9 +26,13 @@ export default function ItemModal() {
     setName(e.target.value);
   };
 
-  const onSubmit = e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(actions.itemActions.addItem(name));
+    const newItem = {
+      name
+    };
+    const res = await axios.post('/api/items', newItem);
+    dispatch(actions.itemActions.addItem(res.data));
     toggle();
   };
 
