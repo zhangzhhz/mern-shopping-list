@@ -26,7 +26,7 @@ export default function Appnavbar(props) {
           <Collapse isOpen={isOpen} navbar>
             <Nav className='ml-auto' navbar>
               <NavItem>
-                <NavLink href='https://github.com/zhangzhhz/'>Github</NavLink>
+                <NavLink href='https://github.com/zhangzhhz/mern-shopping-list'>Github</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
