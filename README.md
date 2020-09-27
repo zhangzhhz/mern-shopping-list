@@ -2,6 +2,15 @@
 
 Updated to use functional components with hooks.
 
+### config/keys.js
+
+I removed this file from directory. It has simply the following:
+
+```
+module.exports = {
+  mongoURI: 'mongodb+srv://<user>:<pass>@cluster0.9o1yx.azure.mongodb.net/mern-shopping?retryWrites=true&w=majority',
+}
+```
 
 ### To deploy to subdirectory **shopping-list** of my web site on my own Nginx server:
 
