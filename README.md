@@ -1,5 +1,8 @@
 [Learn the MERN Stack](https://www.youtube.com/playlist?list=PLillGF-RfqbbiTGgA77tGO426V3hRF9iE)
 
+Updated to use functional components with hooks.
+
+
 To deploy to subdirectory **shopping-list** of my web site on my own Nginx server:
 
 1. Add the following in `client/package.json`:
