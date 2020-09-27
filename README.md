@@ -4,7 +4,7 @@ Updated to use functional components with hooks.
 
 ### config/keys.js
 
-I removed this file from directory. It has simply the following:
+I removed this file from repository. It has simply the following:
 
 ```
 module.exports = {
